@@ -1,4 +1,30 @@
+@font-face {
+    font-family: 'Kadwa';
+    src: url("assets/fonts/Kadwa-Regular.ttf") format("tff");
+}
+
+.App {
+    background-color: #F9F9F9;
+    font-family: 'Kadwa', sans-serif;
+}
+
+.WebsiteForm-background {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
 .WebsiteForm {
     display: flex;
     flex-direction: column;
+    width: fit-content;
+    padding: 5rem;
+    gap: 1rem;
+    background-color: #F6F5F5;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.10);
+    border-radius: 20px;
+}
+
+.WebsiteForm textarea {
+    resize: none;
 }
