@@ -1,8 +1,9 @@
 const WebsiteForm = () => {
     return (
-        <form>
+        <form className={"WebsiteForm"}>
             <input type={"text"} placeholder={"Your URL"} name={"url"}/>
-            <input type={"text"} placeholder={"Enter the action you want app to preform"} name={"comment"}/>
+            <input type={"text"} placeholder={"Shortly about project"} name={"comment"}/>
+            <button>Analyze</button>
         </form>
     );
 }
