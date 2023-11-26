@@ -21,10 +21,8 @@ const Background = ({children}) => {
     return (
         <>
             <div className={"block-bg"}>
-                <div
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                >
+                <div onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}>
                     {children}
                 </div>
             </div>

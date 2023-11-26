@@ -4,7 +4,7 @@ const URLContext = createContext(undefined);
 const ChangeURLContext = createContext(undefined);
 
 const URLProvider = ({ children }) => {
-    const [url, setUrl] = useState("https://www.relax-family.in.ua");
+    const [url, setUrl] = useState("https://www.alza.sk/");
 
     return (
         <ChangeURLContext.Provider value={setUrl}>
