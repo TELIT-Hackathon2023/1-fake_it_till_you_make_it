@@ -6,7 +6,7 @@ import cv2
 import pyautogui
 import base64
 import requests
-import mouse
+from AI import web_controller
 
 
 def encode_image(image_path):
@@ -14,24 +14,21 @@ def encode_image(image_path):
         return base64.b64encode(image_file.read()).decode('utf-8')
 
 
-chrome_options = Options()
+api_key = "" #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-driver = webdriver.Chrome(options=chrome_options)
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": f"Bearer {api_key}"
+}
 
-driver.execute_script("return window.performance.timing.loadEventEnd")
-driver.maximize_window()
-start_time = time.time()
-driver.get("https://www.browserstack.com/guide/ideal-screen-sizes-for-responsive-design")
-
-load_time = time.time() - start_time
-print(f"Page Load Time: {load_time:.8f} seconds")
+wb = web_controller()
+wb.open_web("https://www.browserstack.com/guide/ideal-screen-sizes-for-responsive-design")
 
 image = pyautogui.screenshot()
 image = cv2.cvtColor(np.array(image),
                      cv2.COLOR_RGB2BGR)
 cv2.imwrite("image1.png", image)
 
-time.sleep(5)
 
 messages = []
 
@@ -55,11 +52,21 @@ while True:
         ]
         messages.append({"role": "user", "content": content})
 
+        payload = {
+            "model": "gpt-4-vision-preview",
+            "messages": messages,
+            "max_tokens": 300
+        }
+
         response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-
-        reply = response['choices'][0]['text']
+        print(response.json())
+        response_json = response.json()
+        reply = response_json['choices'][0]['message']['content']
         print(f"ChatGPT: {reply}")
-        messages.append({"role": "assistant", "content": reply})
-
-driver.close()
+        messages.append({"role": "assistant", "content": [
+            {
+                "type": "text",
+                "text": f"{message}"
+            }
+        ]})
 
