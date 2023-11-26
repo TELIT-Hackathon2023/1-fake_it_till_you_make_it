@@ -3,15 +3,58 @@
     src: url("assets/fonts/Kadwa-Regular.ttf") format("tff");
 }
 
-.App {
+body {
     background-color: #F9F9F9;
     font-family: 'Kadwa', sans-serif;
 }
 
+.App {
+    position: relative;
+}
+
+.Background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.svg-vertical-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.svg-vertical-group img {
+    display: block;
+    width: 14rem;
+}
+
+.logo {
+    margin: 1rem 0 2rem 4rem;
+}
+
+.bg-vector-2 {
+    margin-left: 12rem;
+    margin-top: -4rem;
+}
+
+.bg-vector-3 {
+    margin-top: -1.7rem;
+}
+
+.bg-vector-4 {
+    width: 5rem !important;;
+}
+
 .WebsiteForm-background {
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
 }
 
 .WebsiteForm {
@@ -23,8 +66,13 @@
     background-color: #F6F5F5;
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.10);
     border-radius: 20px;
+    margin-top: 5rem;
 }
 
 .WebsiteForm textarea {
     resize: none;
+}
+
+.ScenariosPage {
+    width: 100%;
 }

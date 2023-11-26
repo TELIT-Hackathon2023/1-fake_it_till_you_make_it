@@ -40,7 +40,9 @@ const ScenariosPage = () => {
     }
 
     return (
-        <>{loading ? <p>Loading...</p> : scoreData()}</>
+        <div className={"ScenariosPage"}>
+            {loading ? <p>Loading...</p> : scoreData()}
+        </div>
     )
 }
 

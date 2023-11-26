@@ -3,7 +3,8 @@ import ScenariosPage from "./components/ScenariosPage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import APIProvider from "./provider/APIProvider";
 import URLProvider from "./provider/URLProvider";
-import EnteryPage from "./components/EnteryPage";
+import Background from "./components/Background";
+import WebsiteForm from "./components/WebsiteForm";
 
 function App() {
     return (
@@ -11,10 +12,12 @@ function App() {
             <URLProvider>
                 <div className={"App"}>
                     <BrowserRouter>
-                        <Routes>
-                            <Route path={"/"} element={<EnteryPage/>}/>
-                            <Route path={"/scenarios"} element={<ScenariosPage/>}/>
-                        </Routes>
+                        <Background>
+                            <Routes>
+                                <Route path={"/"} element={<WebsiteForm/>}/>
+                                <Route path={"/scenarios"} element={<ScenariosPage/>}/>
+                            </Routes>
+                        </Background>
                     </BrowserRouter>
                 </div>
             </URLProvider>

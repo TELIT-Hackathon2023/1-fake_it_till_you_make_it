@@ -17,16 +17,18 @@ const WebsiteForm = () => {
     }
 
     return (
-        <form className={"WebsiteForm"} onSubmit={submitHandler}>
-            <h1>Start testing your website</h1>
-            <input onChange={(e) => inputHandler(e)}
-                   value={urlInput}
-                   type={"text"}
-                   placeholder={"Your URL"}
-                   name={"url"}/>
-            <textarea rows={5} placeholder={"Shortly about project"} name={"comment"}/>
-            <button>Analyze</button>
-        </form>
+        <div className={"WebsiteForm-background"}>
+            <form className={"WebsiteForm"} onSubmit={submitHandler}>
+                <h1>Start testing your website</h1>
+                <input onChange={(e) => inputHandler(e)}
+                       value={urlInput}
+                       type={"text"}
+                       placeholder={"Your URL"}
+                       name={"url"}/>
+                <textarea rows={5} placeholder={"Shortly about project"} name={"comment"}/>
+                <button>Analyze</button>
+            </form>
+        </div>
     );
 }
 
