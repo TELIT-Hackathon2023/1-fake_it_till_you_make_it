@@ -1,16 +1,7 @@
-import os
-
-import numpy as np
-import cv2
-import pyautogui
-import base64
-import requests
-import mouse
 from selenium import webdriver
 import time
 from selenium.webdriver.chrome.options import Options
-import base64
-
+from selenium.webdriver.common.by import By
 
 class web_controller:
 
@@ -48,4 +39,10 @@ class web_controller:
 
     def screenshot(self, counter:int):
         self.driver.save_screenshot("image"+str(counter)+".png")
+
+    def click_on_object(self, name):
+        self.driver.find_element(By.NAME, name).click()
+        
+    def write_in_field(self, name, text):
+        self.driver.find_element(By.NAME, name).send_keys(text)
 
