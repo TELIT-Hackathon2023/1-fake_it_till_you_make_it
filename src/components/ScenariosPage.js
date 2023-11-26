@@ -46,6 +46,8 @@ const ScenariosPage = () => {
                         title={scenario.title}
                         img={scenario.img}
                         problems={scenario.problems}
+                        pros={scenario.pros}
+                        cons={scenario.cons}
                         position={true}
                     />
                 </>
@@ -56,6 +58,8 @@ const ScenariosPage = () => {
                         title={scenario.title}
                         img={scenario.img}
                         problems={scenario.problems}
+                        pros={scenario.pros}
+                        cons={scenario.cons}
                         position={false}
                     />
                 </>

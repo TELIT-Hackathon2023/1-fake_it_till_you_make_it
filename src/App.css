@@ -85,7 +85,7 @@ body {
     justify-content: end;
 }
 
-.add-files button {
+.add-files button, .Scenario button {
     padding: 0.5rem 1rem;
     border-color: #E20074;
     width: 7rem;
@@ -183,6 +183,7 @@ body {
     margin: 0 0 3rem 0;
 }
 
-
-
+.Scenario {
+    display: flex;
+}
 

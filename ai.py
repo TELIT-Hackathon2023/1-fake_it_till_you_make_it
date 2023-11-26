@@ -1,72 +1,51 @@
-from selenium import webdriver
-import time
-from selenium.webdriver.chrome.options import Options
+import os
+
 import numpy as np
 import cv2
 import pyautogui
 import base64
 import requests
-from AI import web_controller
+import mouse
+from selenium import webdriver
+import time
+from selenium.webdriver.chrome.options import Options
+import base64
 
 
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode('utf-8')
+class web_controller:
 
+    def __init__(self):
+        self.chrome_options = Options()
 
-api_key = "" #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        self.driver = webdriver.Chrome(options=self.chrome_options)
 
-headers = {
-  "Content-Type": "application/json",
-  "Authorization": f"Bearer {api_key}"
-}
+        self.driver.execute_script("return window.performance.timing.loadEventEnd")
+        self.driver.maximize_window()
+        self.y = 0
 
-wb = web_controller()
-wb.open_web("https://www.browserstack.com/guide/ideal-screen-sizes-for-responsive-design")
+    def open_web(self, page):
+        start_time = time.time()
+        self.driver.get(page)
 
-image = pyautogui.screenshot()
-image = cv2.cvtColor(np.array(image),
-                     cv2.COLOR_RGB2BGR)
-cv2.imwrite("image1.png", image)
+        load_time = time.time() - start_time
+        print(f"Page Load Time: {load_time:.8f} seconds")
 
+    def close_web(self):
+        self.driver.close()
 
-messages = []
+    def scroll_down(self):
+        height = self.driver.execute_script("return document.body.scrollHeight")
+        self.y += 1000
+        if self.y > height:
+            self.y = height
+        self.driver.execute_script(f"window.scrollTo(0, {self.y});")
 
-while True:
-    message = input("User: ")
-    image_path = input("")
+    def scroll_up(self):
+        self.y -= 500
+        if self.y < 0:
+            self.y = 0
+        self.driver.execute_script(f"window.scrollTo(0, {self.y});")
 
-    if message:
-        base64_image = encode_image(image_path)
-        content = [
-            {
-                "type": "text",
-                "text": f"{message}"
-            },
-            {
-                "type": "image_url",
-                "image_url": {
-                    "url": f"data:image/jpeg;base64,{base64_image}"
-                }
-            }
-        ]
-        messages.append({"role": "user", "content": content})
-
-        payload = {
-            "model": "gpt-4-vision-preview",
-            "messages": messages,
-            "max_tokens": 300
-        }
-
-        response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-        print(response.json())
-        response_json = response.json()
-        reply = response_json['choices'][0]['message']['content']
-        print(f"ChatGPT: {reply}")
-        messages.append({"role": "assistant", "content": [
-            {
-                "type": "text",
-                "text": f"{message}"
-            }
-        ]})
+    def screenshot(self, counter:int):
+        self.driver.save_screenshot("image"+str(counter)+".png")
 
