@@ -1,6 +1,6 @@
 import openai
 
-OPENAI_API_KEY = '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'
+OPENAI_API_KEY = ''
 openai.api_key = OPENAI_API_KEY
 
 response = openai.chat.completions.create(
