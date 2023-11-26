@@ -23,4 +23,5 @@ urlpatterns = [
     path('receive-string/', views.receive_string, name='receive-string'),
     path('input-form/', views.input_form, name='input_form'),
     path('api/', views.api_view, name='api_view'),
+    path('api/chat/', views.api_chat, name='api_chat'),
 ]
